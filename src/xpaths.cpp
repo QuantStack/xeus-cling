@@ -82,7 +82,7 @@ namespace xcpp
 #endif
         return path;
     }
-    
+
     std::string prefix_path()
     {
         std::string path = executable_path();
@@ -91,6 +91,10 @@ namespace xcpp
 #else
         char separator = '/';
 #endif
-        return path.substr(0, path.find_last_of("/\\")) + separator + ".." + separator;
+
+        std::string bin_folder = path.substr(0, path.find_last_of(separator));
+        std::string prefix = bin_folder.substr(0, bin_folder.find_last_of(separator)) + separator;
+
+        return prefix;
     }
 }
