@@ -33,6 +33,19 @@ A package for xeus-cling is available for the mamba (or conda) package manager.
 
 .. image:: cmake.svg
 
+As Docker image
+----------------
+
+In case of difficulties installing the required dependencies on your system, it is possible to run xeus cling as a Docker image:
+
+.. code::
+
+      FROM continuumio/miniconda3
+
+      RUN conda install -y -c conda-forge bash jupyter jupyterlab
+      RUN conda install -y -c conda-forge xeus-cling xtensor
+      RUN mkdir ./notebooks
+
 From source with cmake
 ----------------------
 
