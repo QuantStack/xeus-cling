@@ -52,6 +52,16 @@ namespace xcpp
           m_cout_buffer(std::bind(&interpreter::publish_stdout, this, _1)),
           m_cerr_buffer(std::bind(&interpreter::publish_stderr, this, _1))
     {
+        // Extra setup normally performed in Cling's main function
+        m_cling.AddIncludePath(".");
+
+        // Load libs
+        const cling::InvocationOptions& Opts = m_cling.getOptions();
+        for (const std::string& Lib : Opts.LibsToLoad)
+        {
+          m_cling.loadFile(Lib);
+        }
+
         redirect_output();
         init_preamble();
         init_magic();
