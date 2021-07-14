@@ -39,4 +39,4 @@ install:
 build_script:
   - cd test
   - test_xeus_cling
-  - cd.. && cd.. && cd test && py.test . & exit 0
+  - cd.. && cd.. && cd test && py.test .
